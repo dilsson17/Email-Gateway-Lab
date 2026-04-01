@@ -4,7 +4,7 @@
 
 This lab is a security-focused email gateway I built on Ubuntu. The idea is simple — instead of letting emails go straight to the user, they first go through a security pipeline that checks if they are spam or malware. If something looks bad, it gets blocked and quarantined. Everything gets logged and sent to Splunk so I can monitor and alert on suspicious activity.
 
-I built this to practice detection engineering skills and to understand how email-based attacks like phishing are detected and stopped in real environments.
+I built this to practice SOC skills and understand how email-based attacks like phishing are detected and blocked in real environments.
 
 ## Tools Used
 
