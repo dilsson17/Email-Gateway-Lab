@@ -14,7 +14,7 @@ I built this to practice SOC skills and understand how email-based attacks like 
 | Amavis | Works as the middleman. It takes the email from Postfix and sends it to SpamAssassin and ClamAV for analysis |
 | SpamAssassin | Checks the email content and gives it a spam score. Anything above 5.0 gets flagged |
 | ClamAV | Scans for malware and viruses in the email and attachments |
-| Splunk | Collects all the mail logs, shows detections in a dashboard, and fires alerts in real time |
+| Splunk | Collects all the mail logs, shows detections in a dashboard, and triggers alerts on blocked events |
 
 ## How the Email Flow Works
 
@@ -95,7 +95,7 @@ index=* sourcetype=mail_log amavis
 
 | Technique | ID | How It's Detected |
 |-----------|-----|-------------------|
-| Phishing | T1566 | SpamAssassin scores the email content, Amavis blocks and quarantines it, Splunk alerts in real time |
+| Phishing | T1566 | SpamAssassin scores the email content, Amavis blocks and quarantines it, Splunk triggers an alert on blocked events |
 
 ## Environment
 
