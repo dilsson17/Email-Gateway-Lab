@@ -2,7 +2,7 @@
 
 ## Overview
 
-This lab is a security-focused email gateway I built on Ubuntu. The idea is simple — instead of letting emails go straight to the user, they first go through a security pipeline that checks if they are spam or malware. If something looks bad, it gets blocked and quarantined. Everything gets logged and sent to Splunk so I can monitor and alert on suspicious activity.
+This lab is a security-focused email gateway I built on Ubuntu. The idea is simple. Instead of letting emails go straight to the user, they first go through a security pipeline that checks if they are spam or malware. If something looks bad, it gets blocked and quarantined. Everything gets logged and sent to Splunk so I can monitor and alert on suspicious activity.
 
 I built this to practice SOC skills and understand how email-based attacks like phishing are detected and blocked in real environments.
 
@@ -11,8 +11,8 @@ I built this to practice SOC skills and understand how email-based attacks like 
 | Tool | Role |
 |------|------|
 | Postfix | Receives incoming emails and routes them through the security pipeline |
-| Amavis | Works as the middleman — takes the email from Postfix and sends it to SpamAssassin and ClamAV for analysis |
-| SpamAssassin | Checks the email content and gives it a spam score — anything above 5.0 gets flagged |
+| Amavis | Works as the middleman. It takes the email from Postfix and sends it to SpamAssassin and ClamAV for analysis |
+| SpamAssassin | Checks the email content and gives it a spam score. Anything above 5.0 gets flagged |
 | ClamAV | Scans for malware and viruses in the email and attachments |
 | Splunk | Collects all the mail logs, shows detections in a dashboard, and fires alerts in real time |
 
@@ -28,8 +28,8 @@ I built this to practice SOC skills and understand how email-based attacks like 
 
 ## Detection Testing
 
-### Spam Test — GTUBE
-The GTUBE string is the industry standard for testing spam detection — similar to how EICAR is used for antivirus. Any properly configured SpamAssassin must detect it.
+### Spam Test (GTUBE)
+The GTUBE string is the industry standard for testing spam detection, similar to how EICAR is used for antivirus. Any properly configured SpamAssassin must detect it.
 
 I sent a test email through SMTP containing the GTUBE string and SpamAssassin flagged it with a score of 999.1. Amavis blocked it and quarantined it.
 
@@ -40,9 +40,9 @@ Instead of typing all the SMTP commands manually every time, I wrote a Bash scri
 (
 echo "EHLO test.local"
 sleep 1
-echo "MAIL FROM:"
+echo "MAIL FROM:<attacker@evil.com>"
 sleep 1
-echo "RCPT TO:"
+echo "RCPT TO:<socadmin@localhost>"
 sleep 1
 echo "DATA"
 sleep 1
@@ -66,8 +66,8 @@ I built a dashboard called Email Gateway Security with two panels:
 
 ![Email Gateway Dashboard](splunk-dashboard-email-gateway.png)
 
-- **Spam Actions — Blocked vs Passed** — pie chart showing how many emails were blocked vs delivered
-- **Blocked Spam Details** — table showing the sender, recipient, and spam score for every blocked email
+- **Spam Actions - Blocked vs Passed** - pie chart showing how many emails were blocked vs delivered
+- **Blocked Spam Details** - table showing the sender, recipient, and spam score for every blocked email
 
 ### Alert
 I set up a real-time alert that triggers whenever a Blocked event is detected. Severity is set to High.
@@ -106,7 +106,7 @@ index=* sourcetype=mail_log amavis
 ## Key Takeaways
 
 - Email is one of the biggest attack vectors out there, so having something that checks emails before they reach the user is really important.
-- Amavis is what makes everything work together — it sits in the middle and coordinates SpamAssassin and ClamAV so Postfix doesn't have to deal with each one separately.
-- Connecting the logs to Splunk showed me how important visibility is — without it, you wouldn't even know an email got blocked.
-- Writing the Bash script to automate the spam tests made me realize how useful scripting is for security tasks — instead of typing the same commands over and over, one script does it in seconds.
+- Amavis is what makes everything work together. It sits in the middle and coordinates SpamAssassin and ClamAV so Postfix does not have to deal with each one separately.
+- Connecting the logs to Splunk showed me how important visibility is. Without it, you would not even know an email got blocked.
+- Writing the Bash script to automate the spam tests made me realize how useful scripting is for security tasks. Instead of typing the same commands over and over, one script does it in seconds.
 - This lab helped me understand how phishing detection works at the network and infrastructure level, not just on the endpoint.
