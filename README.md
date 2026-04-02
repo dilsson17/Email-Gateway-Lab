@@ -105,8 +105,8 @@ index=* sourcetype=mail_log amavis
 
 ## Key Takeaways
 
-- Email is one of the most common attack vectors, and having a security layer in front of the mailbox makes a big difference.
-- Amavis is the key piece that connects everything — without it, integrating SpamAssassin and ClamAV with Postfix directly is much harder and less reliable.
-- Seeing the detections show up in Splunk in real time showed me how important log visibility is — without it you would never know an email was blocked.
-- Writing the Bash script to automate the spam tests taught me how scripting saves time on repetitive security tasks.
-- This lab gave me a better understanding of how phishing detection works at the infrastructure level, not just the endpoint level.
+- Email is one of the biggest attack vectors out there, so having something that checks emails before they reach the user is really important.
+- Amavis is what makes everything work together — it sits in the middle and coordinates SpamAssassin and ClamAV so Postfix doesn't have to deal with each one separately.
+- Connecting the logs to Splunk showed me how important visibility is — without it, you wouldn't even know an email got blocked.
+- Writing the Bash script to automate the spam tests made me realize how useful scripting is for security tasks — instead of typing the same commands over and over, one script does it in seconds.
+- This lab helped me understand how phishing detection works at the network and infrastructure level, not just on the endpoint.
