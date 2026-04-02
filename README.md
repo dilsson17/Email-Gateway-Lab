@@ -64,7 +64,9 @@ I configured Splunk to monitor /var/log/mail.log in real time. As emails get pro
 ### Dashboard
 I built a dashboard called Email Gateway Security with two panels:
 
+![Email Gateway Dashboard](splunk-dashboard-email-gateway.png)
 - **Spam Actions — Blocked vs Passed** — pie chart showing how many emails were blocked vs delivered
+![Blocked Spam Search](splunk-search-blocked-spam.png)
 - **Blocked Spam Details** — table showing the sender, recipient, and spam score for every blocked email
 
 ### Alert
