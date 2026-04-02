@@ -69,8 +69,6 @@ I built a dashboard called Email Gateway Security with two panels:
 - **Spam Actions — Blocked vs Passed** — pie chart showing how many emails were blocked vs delivered
 - **Blocked Spam Details** — table showing the sender, recipient, and spam score for every blocked email
 
-![Blocked Spam Search](splunk-search-blocked-spam.png)
-
 ### Alert
 I set up a real-time alert that triggers whenever a Blocked event is detected. Severity is set to High.
 
@@ -91,6 +89,7 @@ index=* sourcetype=mail_log amavis
 | eval action=if(match(_raw,"Blocked"),"Blocked","Passed")
 | stats count by action
 ```
+![Blocked Spam Search](splunk-search-blocked-spam.png)
 
 ## MITRE ATT&CK Mapping
 
