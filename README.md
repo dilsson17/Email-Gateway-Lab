@@ -102,3 +102,11 @@ index=* sourcetype=mail_log amavis
 - OS: Ubuntu 22.04 LTS
 - SIEM: Splunk Enterprise 10.2
 - VM: VMware Workstation
+
+## Key Takeaways
+
+- Email is one of the most common attack vectors, and having a security layer in front of the mailbox makes a big difference.
+- Amavis is the key piece that connects everything — without it, integrating SpamAssassin and ClamAV with Postfix directly is much harder and less reliable.
+- Seeing the detections show up in Splunk in real time showed me how important log visibility is — without it you would never know an email was blocked.
+- Writing the Bash script to automate the spam tests taught me how scripting saves time on repetitive security tasks.
+- This lab gave me a better understanding of how phishing detection works at the infrastructure level, not just the endpoint level.
