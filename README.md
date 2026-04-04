@@ -152,7 +152,7 @@ index=* sourcetype=mail_log amavis
 
 | Technique | ID | How It's Detected |
 |-----------|-----|-------------------|
-| Phishing | T1566 | SpamAssassin scores the email content, Amavis blocks and quarantines it, Splunk triggers an alert on blocked events |
+| Phishing | T1566 | SpamAssassin scores the email content, ClamAV scans for malicious attachments, Amavis blocks and quarantines it, Splunk triggers an alert on blocked events |
 
 ## Environment
 
