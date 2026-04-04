@@ -104,7 +104,7 @@ echo "QUIT"
 ```
 
 ### DKIM Verification
-OpenDKIM signs every outgoing email from homelab.local and rejects signing requests from unauthorized domains. The log shows both behaviors — emails from attacker@evil.com get no signing table match, while legitimate emails from homelab.local get a DKIM-Signature field added.
+OpenDKIM signs every outgoing email from homelab.local and rejects signing requests from unauthorized domains. The log shows both behaviors: emails from attacker@evil.com get no signing table match, while legitimate emails from homelab.local get a DKIM-Signature field added.
 
 ![DKIM Signing Log](dkim-signing-log.png)
 
