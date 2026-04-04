@@ -40,6 +40,10 @@ I built this to practice SOC skills and understand how email-based attacks like 
 14. Dovecot makes it accessible via IMAP
 15. The result gets logged to /var/log/mail.log and Splunk picks it up in real time
 
+## Stack Diagram
+
+![Email Gateway Stack](email-gateway-diagram.png)
+
 ## Email Authentication
 
 One of the things I focused on was setting up proper email authentication. This is what companies use to stop attackers from sending emails pretending to be someone else.
@@ -98,6 +102,16 @@ sleep 1
 echo "QUIT"
 ) | telnet localhost 25
 ```
+
+### DKIM Verification
+OpenDKIM signs every outgoing email from homelab.local and rejects signing requests from unauthorized domains. The log shows both behaviors — emails from attacker@evil.com get no signing table match, while legitimate emails from homelab.local get a DKIM-Signature field added.
+
+![DKIM Signing Log](dkim-signing-log.png)
+
+### Fail2ban Brute Force Protection
+After 5 failed IMAP login attempts, Fail2ban automatically banned the source IP. The dovecot jail was tuned with a custom filter to match the exact log format Dovecot writes to mail.log.
+
+![Fail2ban Ban Log](fail2ban-ban-log.png)
 
 ## Splunk Integration
 
